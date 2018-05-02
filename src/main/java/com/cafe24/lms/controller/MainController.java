@@ -1,0 +1,23 @@
+package com.cafe24.lms.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class MainController {
+
+	@RequestMapping( { "", "/main" } )
+	public String index( Model model ) {
+		return "main/index";
+	}
+	
+
+	
+	@RequestMapping( "/rent" )
+	public String rent( Model model ) {
+		return "main/rent";
+	}
+
+	
+}
