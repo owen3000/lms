@@ -1,11 +1,15 @@
 package com.cafe24.interceptor;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -83,12 +87,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 
-/*		if (handler instanceof HandlerMethod) {
-		//System.out.println("postHandle");
-		HandlerMethod hm = (HandlerMethod) handler;
-		
+		if (handler instanceof HandlerMethod) {
+			HandlerMethod hm = (HandlerMethod) handler;
 			// modifying 메서드 일 경우.
-			if( "modifying".equals(hm.getMethod().getName()) ) {
+			if( "modify".equals(hm.getMethod().getName()) ) {
 				RequestMapping rm = hm.getMethodAnnotation(RequestMapping.class);
 				RequestMethod[] requestMethod = rm.method();
 				System.out.println(rm);
@@ -100,29 +102,18 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 					HttpSession session = request.getSession();
 					if( session != null) { 
 						Map<String, Object> map = modelAndView.getModel();
-						//이거 map인데 
-						//map: {User=User [no=2, id=a1, password=1111, ... } 
-						//이런식으로 User란 이름으로 옴. controller에서
-						// User authUser = userService.get(vo.getNo());
-						// modelAndView.addObject(authUser); 해주었음.
-						User updateUser = (User) map.get("User");
-						//setAttribute하면 세션 초기화 되서 로그인 끊김...
-						//session.setAttribute("authUser", authUser);
+						//{user=User [id=2, name=aaa, email=aaa@naver.com, password=1111, gender=female, role=user], org
+						User updateUser = (User) map.get("user");
 						User authUser = (User) session.getAttribute("authUser");
-						authUser.setPassword(updateUser.getPassword());
-						authUser.setName(updateUser.getName());
-						authUser.setBirth(updateUser.getBirth());
-						authUser.setTel(updateUser.getTel());
-						authUser.setPhone(updateUser.getPhone());
-						authUser.setZipcode(updateUser.getZipcode());
-						authUser.setAddress(updateUser.getAddress());
-						authUser.setEmail(updateUser.getEmail());
+						authUser.setName( updateUser.getName() );
+						authUser.setPassword( updateUser.getPassword() );
+						authUser.setGender( updateUser.getGender() );
 						System.out.println("authUser 업데이트 셋팅 완료!");
 					}
 				}
 			}	
 			
-		}*/
+		}
 	}//postHandle
 	
 }

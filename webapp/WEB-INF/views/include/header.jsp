@@ -8,8 +8,9 @@
 			<ul>
 			<c:choose>
 				<c:when test="${authUser ne null }">
-					
+				<c:if test="${authUser.role ne 'admin' }">
 					<li><a href="${pageContext.servletContext.contextPath }/user/modify">회원정보수정</a><li>
+				</c:if>
 					<li><a href="${pageContext.servletContext.contextPath }/user/logout">로그아웃</a><li>
 					<c:if test="${authUser.role eq 'admin' }">
 						<li><a href="${pageContext.servletContext.contextPath }/admin">관리자페이지</a><li>

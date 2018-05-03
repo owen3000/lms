@@ -10,6 +10,70 @@
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.servletContext.contextPath }/assets/css/user.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="${pageContext.servletContext.contextPath}/assets/js/jquery/jquery-1.9.0.js">
+</script>
+
+<script>
+$(function(){
+	
+	$("#check-email").keyup(function() {
+		var email = $("#check-email").val();
+		//alert( email );
+		if( email != "" ){
+			$.ajax({
+				url: "/lms/api/user/checkEmail?email="+email,
+				type:"get",
+				dataType:"json",
+				success: function(response){
+					console.log(response);
+					if( response.result == "fail" ){
+						console.log(response.message);
+						//$("#check-image").hide();
+						return;
+					}
+					
+					if( response.data == "exist" ){
+						//$("#img-checkid").data("flag","false");
+						alert("해당 email이 존재합니다.");
+						$("#check-email").val("");
+						$("#check-image").hide();
+						return;
+					}
+					if( response.data == "none" ){
+						//$("#img-checkid").data("flag","true");
+						$("#check-button").hide();
+						$("#check-image").show();
+						return;
+					}
+					
+				}
+			});//$.ajax
+		}else{
+			$("#check-image").hide();
+		}
+		
+		
+		
+	});//$("#check-button").click
+	
+	
+	$("#join-form").on("submit", function() {
+		var allData = {};
+		$.each( $(this).serializeArray(), function(index, o) {
+			allData[ o.name ] = o.value;
+		});//$.each
+
+	 	if( allData["agreeProv"] == undefined ){
+			alert("약관에 동의하세요!");
+			event.preventDefault();
+			return;
+		} 
+
+	});//$("#join-form").on("submit"
+			
+});// $(function()
+</script>
 </head>
 <body>
 	<div id="container">
@@ -28,7 +92,7 @@
 
 
 					<label class="block-label" for="email">이메일</label>
-					<form:input path="email" required="required" />
+					<form:input id="check-email" path="email" required="required" />
 					<img id="check-image" src="${pageContext.request.contextPath }/assets/images/email-check.png" style="display:none"/>
 					<input id="check-button" type="button" value="중복체크" style="display:;">
 					<p style="margin:0; padding:0; color:red; text-align:left">

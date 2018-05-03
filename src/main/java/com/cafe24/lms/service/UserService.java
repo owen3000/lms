@@ -23,4 +23,13 @@ public class UserService {
 	public User login( User user ) {
 		return userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
 	}
+
+	public void modify(User user) {
+		user.setRole("user");
+		userRepository.save( user );
+	}
+	
+	public User findEmail( String email ) {
+		return userRepository.findByEmail( email );
+	}
 }

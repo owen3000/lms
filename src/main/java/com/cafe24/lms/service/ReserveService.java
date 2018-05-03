@@ -2,7 +2,6 @@ package com.cafe24.lms.service;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -61,7 +60,7 @@ public class ReserveService {
 		if( reserveMax == null) {
 			Rent rented = rentRepository.findByItemAndReserveNull(item);
 			
-			Date rentDate = rented.getRentDate();
+			Date rentDate = rented.getReturnDate();
 			Calendar calendar = WebUtil.dateToCalendar(rentDate);
 			// 반납일 7일 더하기
 			calendar.add ( Calendar.DAY_OF_MONTH, 7 );
@@ -79,8 +78,7 @@ public class ReserveService {
 		}
 		else { // 예약 추가 하기 
 			Rent rented = rentRepository.findByItemAndReserveMax( item, reserveMax );
-			
-			Date rentDate = rented.getRentDate();
+			Date rentDate = rented.getReturnDate();
 			Calendar calendar = WebUtil.dateToCalendar(rentDate);
 			// 반납일 7일 더하기
 			calendar.add ( Calendar.DAY_OF_MONTH, 7 );

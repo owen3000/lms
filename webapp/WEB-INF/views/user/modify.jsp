@@ -16,19 +16,22 @@
 			<div id="user">
 
 				<form id="join-form" name="joinForm" method="post" action="${pageContext.servletContext.contextPath }/user/modify">
+					<input type="hidden" name="id" value="${authUser.id }">
+					<input type="hidden" name="email" value="${authUser.email }">
+					
 					<label class="block-label" for="name">이름</label>
-					<input id="name" name="name" type="text" value="${user.name }">
+					<input id="name" name="name" type="text" value="${authUser.name }" required="required">
 
 					<label class="block-label" for="email">이메일</label>
-					<h3>${user.email }</h3>
+					<h3>${authUser.email }</h3>
 					
 					<label class="block-label">패스워드</label>
-					<input name="password" type="password" value="">
+					<input name="password" type="password" value="" required="required">
 					
 					<fieldset>
 						<legend>성별</legend>
 						<c:choose>
-							<c:when test='${user.gender == "male" }'>
+							<c:when test='${authUser.gender == "male" }'>
 								<label>여</label> <input type="radio" name="gender" value="female">
 								<label>남</label> <input type="radio" name="gender" value="male" checked="checked">
 							</c:when>

@@ -46,4 +46,18 @@ public class UserController {
 	public String joinsuccess(){
 		return "user/joinsuccess";
 	}
+	
+	@Auth(role=Role.USER)
+	@RequestMapping( value="/modify", method=RequestMethod.GET )
+	public String modify(){
+		return "user/modify";
+	}
+	
+	@Auth(role=Role.USER)
+	@RequestMapping( value="/modify", method=RequestMethod.POST )
+	public String modify( @ModelAttribute User user){
+
+		userService.modify( user ); 
+		return "redirect:/";
+	}
 }
