@@ -1,5 +1,6 @@
 package com.cafe24.lms.domain;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -11,10 +12,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn( name="book_id" )
 public class Book extends Item {
 
+	@Column( name="isbn", nullable=false )
 	private String isbn;
 	
 	@ManyToOne
-	@JoinColumn( name="book_category_id" )
+	@JoinColumn( name="book_category_id", nullable=true )
 	private BookCategory category;
 
 	public String getIsbn() {

@@ -16,7 +16,7 @@ public class DVDCategory {
 	@Column( name="dvd_category_id" )
 	private Long id;
 	
-	@Column( name="name", unique=true )
+	@Column( name="name", unique=true, nullable=false )
 	private String name;
 
 	public Long getId() {

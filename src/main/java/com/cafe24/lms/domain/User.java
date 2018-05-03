@@ -22,14 +22,18 @@ public class User {
 	@Column( name="user_id" )
 	private Long id;
 	@NotEmpty
+	@Column( name="name", nullable=false )
 	private String name;
 	@Email
+	@Column( name="email", nullable=false )
 	private String email;
 	@NotEmpty
+	@Column( name="password", nullable=false )
 	private String password;
 	@Enumerated( value=EnumType.STRING )
-	@Column( name="gender", columnDefinition="enum('male','female')" )
+	@Column( name="gender", columnDefinition="enum('male','female')", nullable=false )
 	private Gender gender;
+	@Column( name="role", nullable=false )
 	private String role;
 	
 	public Long getId() {

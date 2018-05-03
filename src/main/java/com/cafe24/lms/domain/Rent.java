@@ -72,7 +72,16 @@ public class Rent {
 		return item;
 	}
 	public void setItem(Item item) {
-		this.item = item;
+		 if(this.item != null) {
+			 if( !(this.item.getRents().isEmpty())) {
+		         this.item.getRents().remove(this);
+			 }
+	     }
+	     this.item = item;
+	     if(item != null) {
+	    	 item.getRents().add(this);
+	     }
+
 	}
 	public User getUser() {
 		return user;

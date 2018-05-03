@@ -23,7 +23,9 @@ public abstract class Item {
 	@GeneratedValue( strategy=GenerationType.IDENTITY )
 	@Column( name="item_id" )
 	private Long id;
+	@Column( name="title", nullable=false )
 	private String title;
+	@Column( name="rented", nullable=false )
 	private String rented;
 	
 	@OneToMany( mappedBy="item", fetch=FetchType.EAGER)
