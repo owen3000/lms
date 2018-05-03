@@ -36,8 +36,10 @@ public class Book extends Item {
 	@Override
 	public String toString() {
 		return "Book [isbn=" + isbn + ", category=" + category + ", getId()=" + getId() + ", getTitle()=" + getTitle()
-				+ ", getRented()=" + getRented() + "]";
+				+ ", getRented()=" + getRented() + ", getRents()=" + getRents() + "]";
 	}
+
+
 
 	
 	

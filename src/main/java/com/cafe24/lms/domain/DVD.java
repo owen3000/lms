@@ -36,8 +36,9 @@ public class DVD extends Item {
 	@Override
 	public String toString() {
 		return "DVD [company=" + company + ", category=" + category + ", getId()=" + getId() + ", getTitle()="
-				+ getTitle() + ", getRented()=" + getRented() + "]";
+				+ getTitle() + ", getRented()=" + getRented() + ", getRents()=" + getRents() + "]";
 	}
 
+	
 	
 }

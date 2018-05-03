@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cafe24.interceptor.Auth;
+import com.cafe24.interceptor.Auth.Role;
 import com.cafe24.lms.domain.User;
 import com.cafe24.lms.service.UserService;
+
 
 @Controller
 @RequestMapping( "/user" )

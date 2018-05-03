@@ -17,7 +17,7 @@
 				<p class="success">
 					정상적으로 대여 되었습니다.
 					<br><br>
-					<a href="${pageContext.servletContext.contextPath }">목록으로 돌아가기</a>
+					<a href="${pageContext.servletContext.contextPath }?page=${param.page}">목록으로 돌아가기</a>
 				</p>				
 			</div>
 		</div>

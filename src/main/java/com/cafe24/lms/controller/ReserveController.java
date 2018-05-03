@@ -17,14 +17,14 @@ public class ReserveController {
 	
 	@RequestMapping( "/reserve" )
 	public String reserve( @AuthUser User authUser,
-			@RequestParam(name="item-id",required=true,defaultValue="")String itemId) {
+			@RequestParam(name="item-id",required=true,defaultValue="")String itemId,
+			@RequestParam(name="page",required=true,defaultValue="")String page) {
 		
-		System.out.println(authUser);
-		System.out.println(itemId);
 		boolean rentResult = false;
 		rentResult = reserveService.reserve(authUser, itemId);
-		System.out.println("rentResult:"+rentResult);
-		
-		return "redirect:/reserved";
+		if( rentResult == false ) {
+			return "redirect:/";
+		}
+		return "redirect:/reserved?page="+page.toString();
 	}
 }

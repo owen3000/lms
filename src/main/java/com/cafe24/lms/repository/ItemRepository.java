@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.cafe24.lms.domain.Item;
 
+
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
-	List<Item> findByItem(Item item);
-
-
+	List<Item> findById(Long no);
+	
 }

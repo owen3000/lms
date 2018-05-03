@@ -17,15 +17,14 @@ public class RentController {
 	
 	@RequestMapping( "/rent" )
 	public String rent( @AuthUser User authUser,
-			@RequestParam(name="item-id",required=true,defaultValue="")String itemId) {
+			@RequestParam(name="item-id",required=true,defaultValue="")String itemId,
+			@RequestParam(name="page",required=true,defaultValue="")String page) {
 		
-		System.out.println(authUser);
-		System.out.println(itemId);
 		boolean rentResult = false;
 		rentResult = rentService.rent(authUser, itemId);
 		if( rentResult == false ) {
 			return "redirect:/";
 		}
-		return "redirect:/rented";
+		return "redirect:/rented?page="+page.toString();
 	}
 }

@@ -89,7 +89,7 @@ public class Rent {
 	}
 	@Override
 	public String toString() {
-		return "Rent [id=" + id + ", rentDate=" + rentDate + ", returnDate=" + returnDate + ", item=" + item + ", user="
+		return "Rent [id=" + id + ", rentDate=" + rentDate + ", returnDate=" + returnDate +  ", user="
 				+ user + ", reserve=" + reserve + "]";
 	}
 

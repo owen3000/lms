@@ -14,10 +14,7 @@
 		<c:import url="/WEB-INF/views/include/header.jsp" />
 		<div id="content">
 			<div id="board">
-<%-- 				<form id="search_form" action="${pageContext.request.contextPath }" method="get">
-					<input type="text" id="kwd" name="kwd" value="">
-					<input type="submit" value="찾기">
-				</form> --%>
+
 				<table class="tbl-ex">
 					<tr>
 						<th>번호</th>
@@ -34,14 +31,23 @@
 							</td>
 							<td>
 							<c:if test="${authUser ne null }">
-							<c:choose>
-								<c:when test="${l.rented eq 'no' }">
-									<a href="${pageContext.servletContext.contextPath }/rent?item-id=${l.id}" class="btn">대여</a>
-								</c:when>
-								<c:otherwise>
-									<a href="${pageContext.servletContext.contextPath }/reserve?item-id=${l.id}" class="btn">예약</a>
-								</c:otherwise>
-							</c:choose>
+					<c:set var="flag" value="false"/>
+					<c:forEach items="${l.rents }" var="r" varStatus="status">
+						<c:if test="${r.user.id eq authUser.id }">
+							<c:set var="flag" value="true"/>
+						</c:if>
+					</c:forEach>
+							<c:if test="${flag == false }">
+								<c:choose>
+									<c:when test="${l.rented eq 'no' }">
+										<a href="${pageContext.servletContext.contextPath }/rent?item-id=${l.id}&page=${pb.nowPage}" class="btn">대여</a>
+									</c:when>
+									<c:otherwise>
+										<a href="${pageContext.servletContext.contextPath }/reserve?item-id=${l.id}&page=${pb.nowPage}" class="btn">예약</a>
+									</c:otherwise>
+								</c:choose>
+							</c:if>
+							
 							</c:if>
 							</td>
 						</tr>					

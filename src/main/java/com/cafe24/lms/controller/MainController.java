@@ -21,28 +21,19 @@ public class MainController {
 	@RequestMapping( { "", "/main" } )
 	public String index( Model model,
 			@RequestParam(name="page",required=true,defaultValue="1")String page) {
+		
 		Integer iPage = WebUtil.checkParameter(page, 1);
-		//System.out.println(iPage);
+
 		Page<Item> list = itemService.getList(iPage,3);
-		System.out.println(list.getContent());
 		PagingBean pb = new PagingBean(list.getTotalElements(),
 				list.getNumber()+1, list.getSize(), 3);
-/*		System.out.println("Number:"+list.getNumber());
-		System.out.println("Size:"+list.getSize());
-		System.out.println("getTotalPages:"+list.getTotalPages());
-		System.out.println("getNumberOfElements:"+list.getNumberOfElements());
-		System.out.println("getTotalElements:"+list.getTotalElements());
-		System.out.println("isFirst:"+list.isFirst());
-		System.out.println("isLast:"+list.isLast());
-		System.out.println(list.nextPageable());
-		System.out.println(list.previousPageable());*/
+		
 		model.addAttribute("list", list);
 		model.addAttribute("pb", pb);
 		return "main/index";
 	}
 	
 
-	
 	@RequestMapping( "/rented" )
 	public String rented( Model model ) {
 		return "main/rented";

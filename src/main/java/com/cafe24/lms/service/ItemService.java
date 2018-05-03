@@ -1,6 +1,7 @@
 package com.cafe24.lms.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -15,7 +16,7 @@ import com.cafe24.lms.repository.ItemRepository;
 @Transactional
 public class ItemService {
 
-	@Autowired
+	@Resource
 	private ItemRepository itemRepository;
 	
 	public Page<Item> getList(int page, int size){

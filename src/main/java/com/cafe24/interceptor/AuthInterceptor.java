@@ -65,12 +65,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		// authUser 권한과  @Auth 의 권한이 ADMIN or USER로 같으면 통과.
 		// 유저가 유저권한에 접근 하는 경우
 		if( "user".equals(authUser.getRole()) && role.contains("USER") ) {
-			//System.out.println("[@Auth interceptor] 유저가 유저권한 접근 통과!");
+			System.out.println("[@Auth interceptor] 유저가 유저권한 접근 통과!");
 			return true;
 		}
 		// 관리자가 관리자권한에 접근 하는 경우
 		if( "admin".equals(authUser.getRole()) && role.contains("ADMIN") ) {
-			//System.out.println("[@Auth interceptor] 관리자가 관리자권한 접근 통과!");
+			System.out.println("[@Auth interceptor] 관리자가 관리자권한 접근 통과!");
 			return true;
 		}
 		}	

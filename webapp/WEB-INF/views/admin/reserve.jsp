@@ -43,7 +43,7 @@
 				<div class="pager">
 					<ul>
  					<c:if test="${pb.previousPageGroup }">
-						<li><a href="${pageContext.servletContext.contextPath }/admin/rent?page=${pb.startPage-1}">◀</a></li>
+						<li><a href="${pageContext.servletContext.contextPath }/admin/reserve?page=${pb.startPage-1}">◀</a></li>
 					</c:if>
 					<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
 						
@@ -52,14 +52,14 @@
 								<li class="selected">${i }</li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="${pageContext.servletContext.contextPath }/admin/rent?page=${i }">${i }</a></li>
+								<li><a href="${pageContext.servletContext.contextPath }/admin/reserve?page=${i }">${i }</a></li>
 							</c:otherwise>
 						</c:choose>
 						
 					</c:forEach>	
 
 					<c:if test="${pb.nextPageGroup }">
-						<li><a href="${pageContext.servletContext.contextPath }/admin/rent?page=${pb.endPage+1}">▶</a></li>
+						<li><a href="${pageContext.servletContext.contextPath }/admin/reserve?page=${pb.endPage+1}">▶</a></li>
 					</c:if>  
 						
 					</ul>

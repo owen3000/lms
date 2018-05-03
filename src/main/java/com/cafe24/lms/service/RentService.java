@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,10 +44,8 @@ public class RentService {
 			return false;
 		}
 		// 해당 Item이 이미 대여중인지 확인.
-		List<Item> list = itemRepository.findByItem(item);
-		System.out.println("[RentService:rent]:"+list);
-		if( !(list.size() == 0 || list == null) ) {
-			System.out.println("[RentService:rent] 이미 대여중인 책입니다.");
+		if( rentRepository.findByItemAndReserveNull(item) != null ) {
+			System.out.println("[RentService:reserve] 대여중 ");
 			return false;
 		}
 		
@@ -64,6 +66,12 @@ public class RentService {
 		item.setRented("yes");
 		
 		return true;
+	}
+
+	public Page<Rent> findByReserveIsNull(int page, int size) {
+		PageRequest pageRequest = 
+				new PageRequest(page-1, size, new Sort(Direction.DESC,"rentDate"));
+		return rentRepository.findAllByReserveIsNull(pageRequest);
 	}
 
 }
