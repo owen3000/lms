@@ -9,7 +9,14 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- validator, conversionService, messageConverter를 자동으로 등록 -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven >
+	
+		<!-- argument resolver -->
+		<mvc:argument-resolvers>
+			<bean
+				class="com.cafe24.interceptor.AuthUserHandlerMethodArgumentResolver" />
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven> 
 
 	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
 	<mvc:default-servlet-handler />
@@ -28,4 +35,40 @@
 	<context:annotation-config />
 	<context:component-scan base-package="com.cafe24.lms.controller" />
 
+		<!-- Interceptors -->
+	<mvc:interceptors>
+		<!-- 테스트한부분 그닥 중요한부분은 아니고 <mvc:interceptor> <mvc:mapping path="/guestbook/**" 
+			/> <bean class="com.cafe24.mysite.interceptor.MyInterceptor2" /> </mvc:interceptor> -->
+
+		<mvc:interceptor>
+			<mvc:mapping path="/user/login" />
+			<bean class="com.cafe24.interceptor.AuthLoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/logout" />
+			<bean class="com.cafe24.interceptor.AuthLogoutInterceptor" />
+		</mvc:interceptor>
+<!-- 		<mvc:interceptor>
+			<mvc:mapping path="/admin/login" />
+			<bean class="com.cafe24.interceptor.AuthAdminLoginInterceptor" />
+		</mvc:interceptor>  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/user/login" />
+			<mvc:exclude-mapping path="/user/logout" />
+<!-- 			<mvc:exclude-mapping path="/admin/login" /> -->
+			<mvc:exclude-mapping path="/assets/**" />
+			<bean class="com.cafe24.interceptor.AuthInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>messages/messages_ko</value>
+			</list>
+		</property>
+	</bean>
 </beans>

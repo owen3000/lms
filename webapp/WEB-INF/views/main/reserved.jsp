@@ -7,17 +7,17 @@
 <head>
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link href="${pageContext.servletContext.contextPath }/assets/css/user.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.servletContext.contextPath }/assets/css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="container">
 		<c:import url="/WEB-INF/views/include/header.jsp" />
 		<div id="content">
-			<div id="user">
-				<p class="jr-success">
-					회원가입을 축하합니다.
+			<div id="rent-result">
+				<p class="success">
+					정상적으로 예약이 되었습니다.
 					<br><br>
-					<a href="${pageContext.servletContext.contextPath }/user/loginForm">로그인하기</a>
+					<a href="${pageContext.servletContext.contextPath }">목록으로 돌아가기</a>
 				</p>				
 			</div>
 		</div>

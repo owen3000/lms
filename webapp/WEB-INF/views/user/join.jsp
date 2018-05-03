@@ -17,18 +17,18 @@
 		<div id="content">
 			<div id="user">
 				<form:form
-					modelAttribute="user"
+					modelAttribute="user" 
 					id="join-form"
 					name="joinForm"
 					method="post"
 					action="${pageContext.servletContext.contextPath }/user/join">
 					
-					<label class="block-label" for="name"><spring:message code="name" text="이름"/></label>
-					<input id="name" name="name" type="text" value="${user.name }">
+					<label class="block-label" for="name"><spring:message code="name" text="이름"/></label>		
+					<input id="name" name="name" type="text" value="${user.name }" required="required">
 
 
 					<label class="block-label" for="email">이메일</label>
-					<form:input path="email"/>
+					<form:input path="email" required="required" />
 					<img id="check-image" src="${pageContext.request.contextPath }/assets/images/email-check.png" style="display:none"/>
 					<input id="check-button" type="button" value="중복체크" style="display:;">
 					<p style="margin:0; padding:0; color:red; text-align:left">
@@ -36,7 +36,7 @@
 					</p>
 					
 					<label class="block-label">패스워드</label>
-					<form:password path="password" />
+					<form:password path="password" required="required"/>
 					
 					<fieldset>
 						<legend>성별</legend>
